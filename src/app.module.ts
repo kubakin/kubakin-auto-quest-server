@@ -39,8 +39,11 @@ import { ConfigModule } from '@nestjs/config';
                 'entities': ['dist/**/*.entity{.ts,.js}'],
                 'synchronize': true,
                 ssl: process.env.NODE_ENV === 'production',
-                extra:  process.env.NODE_ENV === 'production' ? {ssl: {rejectUnauthorized: true}} : {},
-
+                extra: {
+                    ssl: {
+                        rejectUnauthorized: true,
+                    }
+                }
             }
         ),
         ServeStaticModule.forRoot({rootPath: path.resolve(__dirname, 'static')}),
