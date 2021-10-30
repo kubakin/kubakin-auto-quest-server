@@ -39,7 +39,6 @@ import { ConfigModule } from '@nestjs/config';
                 'database': process.env.POSTGRES_DB,
                 'entities': ['dist/**/*.entity{.ts,.js}'],
                 'synchronize': true,
-                ssl: process.env.NODE_ENV === 'production',
                 extra: {
                     ssl: process.env.NODE_ENV === 'production',
                 }
