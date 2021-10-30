@@ -40,7 +40,7 @@ import { ConfigModule } from '@nestjs/config';
                 'entities': ['dist/**/*.entity{.ts,.js}'],
                 'synchronize': true,
                 extra: {
-                    ssl: false,
+                    ssl: true,
                 }
             }
         ),
