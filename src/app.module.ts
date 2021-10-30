@@ -14,9 +14,15 @@ import { RolesGuard } from './__shared/guards/roles.guard';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { getConnectionOptions } from 'typeorm';
+import * as path from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
     imports: [
+        ConfigModule.forRoot({
+            envFilePath: `.${process.env.NODE_ENV}.env`,
+        }),
         AuthModule,
         FileModule,
         GameModule,
@@ -24,12 +30,19 @@ import { getConnectionOptions } from 'typeorm';
         TaskModule,
         TeamModule,
         UserModule,
-        TypeOrmModule.forRootAsync({
-            useFactory: async () =>
-                Object.assign(await getConnectionOptions(), {
-                    autoLoadEntities: true,
-                }),
-        })],
+        TypeOrmModule.forRoot({
+                'type': 'postgres',
+                'host': process.env.POSTGRES_HOST,
+                'port': +process.env.POSTGRES_PORT,
+                'username': process.env.POSTGRES_USER,
+                'password': process.env.POSTGRES_PASSWORD,
+                'database': process.env.POSTGRES_DB,
+                'entities': ['dist/**/*.entity{.ts,.js}'],
+                'synchronize': true
+            }
+        ),
+        ServeStaticModule.forRoot({rootPath: path.resolve(__dirname, 'static')}),
+        ],
     controllers: [AppController],
     providers: [AppService
         , {

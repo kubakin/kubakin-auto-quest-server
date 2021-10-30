@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { Roles } from '../__shared/decorators/roles.decorator';
 import { Role } from '../__shared/enums/enums';
+import { iRequestData } from '../__shared/types/types';
 
 @Controller('auth')
 export class AuthController {
@@ -13,15 +14,13 @@ export class AuthController {
         return this.authService.login(dto);
     }
 
-    @Roles([Role.Admin, Role.User])
-    @Get('test')
-    test() {
-        return 'Hello';
+    @Post('register')
+    register(@Body() dto: LoginDto) {
+        return this.authService.register(dto);
     }
 
-    @Get('test2')
-    test2(@Request() req) {
-        console.log(req);
-        return req.user;
+    @Get('me')
+    me(@Request() req: iRequestData) {
+        return this.authService.me(req.user);
     }
 }
