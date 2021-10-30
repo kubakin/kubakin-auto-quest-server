@@ -13,7 +13,6 @@ import { JwtAuthGuard } from './__shared/guards/jwt.guard';
 import { RolesGuard } from './__shared/guards/roles.guard';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import { getConnectionOptions } from 'typeorm';
 import * as path from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { ConfigModule } from '@nestjs/config';
@@ -40,11 +39,8 @@ import { ConfigModule } from '@nestjs/config';
                 'entities': ['dist/**/*.entity{.ts,.js}'],
                 'synchronize': true,
                 ssl: process.env.NODE_ENV === 'production',
-                extra: {
-                    ssl: {
-                        rejectUnauthorized: false,
-                    }
-                }
+                extra:  process.env.NODE_ENV === 'production' ? {ssl: {rejectUnauthorized: true}} : {},
+
             }
         ),
         ServeStaticModule.forRoot({rootPath: path.resolve(__dirname, 'static')}),
