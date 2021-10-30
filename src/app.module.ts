@@ -38,7 +38,11 @@ import { ConfigModule } from '@nestjs/config';
                 'password': process.env.POSTGRES_PASSWORD,
                 'database': process.env.POSTGRES_DB,
                 'entities': ['dist/**/*.entity{.ts,.js}'],
-                'synchronize': true
+                'synchronize': true,
+                ssl: process.env.NODE_ENV === 'production',
+                extra: {
+                    ssl: process.env.NODE_ENV === 'production',
+                }
             }
         ),
         ServeStaticModule.forRoot({rootPath: path.resolve(__dirname, 'static')}),
