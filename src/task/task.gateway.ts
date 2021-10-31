@@ -18,7 +18,6 @@ export class TaskGateway {
     }
     @SubscribeMessage('chat')
     handleMessage(@MessageBody() data: {team: string, msg: string}, @ConnectedSocket() client) {
-        console.log(data);
-        this.server.to(data.team).emit('chat', data.msg)
+        this.server.to(data.team).to('admin').emit('chat', data)
     }
 }

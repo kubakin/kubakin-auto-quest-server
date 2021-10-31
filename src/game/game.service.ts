@@ -26,6 +26,7 @@ export class GameService implements OnModuleInit{
 
     async updateGame(dto: CreateUpdateGameDto) {
         const game = await this.createGameIfNotExist();
+        console.log(dto)
         return await this.gameRepository.save({...game, ...dto});
     }
 

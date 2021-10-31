@@ -21,11 +21,14 @@ export class TaskService {
                 @Inject(forwardRef(()=> TeamService)) private readonly teamService: TeamService) {
     }
 
-    async create(dto: CreateTaskDto, file) {
-        const {fileExtension, filePath} = this.fileService.createFile(FileType.FILE, file);
-        const fileType = getFileType(fileExtension);
-        const task = await this.taskRepository.save({...dto, file:filePath, fileType});
-        return task;
+    async create(dto: Task, file = null) {
+        const task = await this.taskRepository.findOne(dto.id);
+        if (file) {
+            const {fileExtension, filePath} = this.fileService.createFile(FileType.FILE, file);
+            const fileType = getFileType(fileExtension);
+            return await this.taskRepository.save({...task, ...dto, file:filePath, fileType});
+        }
+            return await this.taskRepository.save({...task, ...dto});
     }
 
     async getAll() {
@@ -68,7 +71,7 @@ export class TaskService {
     }
 
     async getTaskById(id: number) {
-        return await this.taskRepository.findOne(id);
+        return await this.taskRepository.findOne(id, {relations: ['helps']});
     }
 
     async updateHelpStatus(taskForTeam: TasksForTeam) {
