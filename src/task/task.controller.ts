@@ -27,6 +27,7 @@ export class TaskController {
     ]))
     create(@UploadedFiles() files, @Body() dto) {
         const jsonDto = JSON.parse(dto.val)
+        console.log(jsonDto)
         if (!files?.file) {
             return this.taskService.create(jsonDto);
         }
