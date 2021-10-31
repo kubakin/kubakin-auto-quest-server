@@ -12,6 +12,6 @@ export class Help {
     @Column({default: 3})
     price: number;
 
-    @ManyToOne(type => Task, task=>task.helps)
+    @ManyToOne(type => Task, task=>task.helps, {onDelete: 'CASCADE'})
     task: Task;
 }

@@ -83,4 +83,8 @@ export class TaskService {
     async deleteOtherPackIfExist(team: Team) {
         await this.taskTeamRepository.delete({team});
     }
+
+    async deleteTask(id) {
+        return await this.taskRepository.delete(id);
+    }
 }

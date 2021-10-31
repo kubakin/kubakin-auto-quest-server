@@ -20,13 +20,13 @@ export class Task {
     @Column({nullable: true})
     file: string;
 
-    @OneToMany(type => Help, help => help.task, {nullable: true})
+    @OneToMany(type => Help, help => help.task, {nullable: true, onDelete: 'CASCADE'})
     helps: Help[]
 
     @Column({default: FileType.NO_FILE})
     fileType: FileType;
 
-    @OneToMany(()=> TasksForTeam, taskToTeam=>taskToTeam.task)
+    @OneToMany(()=> TasksForTeam, taskToTeam=>taskToTeam.task, {onDelete: 'CASCADE'})
     taskToTeam: TasksForTeam[]
 
 }

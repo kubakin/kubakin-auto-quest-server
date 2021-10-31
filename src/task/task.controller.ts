@@ -54,6 +54,11 @@ export class TaskController {
         return this.taskService.getTaskById(id);
     }
 
+    @Post('delete/:id')
+    deleteTask(@Param('id') id: number) {
+        return this.taskService.deleteTask(id);
+    }
+
 
 
 }

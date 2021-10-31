@@ -14,7 +14,7 @@ export class TasksForTeam {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(type => Task, task => task.taskToTeam, {eager: true})
+    @ManyToOne(type => Task, task => task.taskToTeam, {eager: true, onDelete: 'CASCADE'})
     task!: Task;
 
     @Column({default: null})
@@ -23,7 +23,7 @@ export class TasksForTeam {
     @Column({default: 1})
     help_status: number;
 
-    @ManyToOne(type => Team, team => team.taskToTeam)
+    @ManyToOne(type => Team, team => team.taskToTeam, {onDelete: 'CASCADE'})
     team!: Team;
 
     @Column({default: 0})
