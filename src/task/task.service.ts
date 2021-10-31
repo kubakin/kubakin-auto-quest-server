@@ -22,7 +22,7 @@ export class TaskService {
     }
 
     async create(dto: Task, file = null) {
-        const task = await this.taskRepository.findOne(dto.id);
+        const task = await this.taskRepository.findOne({where:{id: dto.id}});
         if (file) {
             const {fileExtension, filePath} = this.fileService.createFile(FileType.FILE, file);
             const fileType = getFileType(fileExtension);
