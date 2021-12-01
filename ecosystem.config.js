@@ -8,7 +8,7 @@ module.exports = {
                 "NODE_ENV": "development",
                 "POSTGRES_HOST": "localhost",
                 "POSTGRES_USER": "postgres",
-                "POSTGRES_PASSWORD": "danilpogudin99",
+                "POSTGRES_PASSWORD": "postgres",
                 "POSTGRES_PORT": "5432",
                 "POSTGRES_DB": "postgres",
                 "ADMIN_USERNAME": "daniapog",
