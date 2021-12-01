@@ -13,7 +13,7 @@ module.exports = {
                 "POSTGRES_DB": "postgres",
                 "ADMIN_USERNAME": "daniapog",
                 "ADMIN_PASSWORD": "daniapog",
-                "PORT": "80"
+                "PORT": "3000"
             }
         }
     ]
