@@ -5,14 +5,15 @@ module.exports = {
             script: "dist/main.js",
             watch: true,
             env: {
-                "NODE_ENV": "production",
+                "NODE_ENV": "development",
                 "POSTGRES_HOST": "localhost",
                 "POSTGRES_USER": "postgres",
-                "POSTGRES_PASSWORD": "postgres",
+                "POSTGRES_PASSWORD": "danilpogudin99",
                 "POSTGRES_PORT": "5432",
                 "POSTGRES_DB": "postgres",
                 "ADMIN_USERNAME": "daniapog",
-                "ADMIN_PASSWORD": "daniapog"
+                "ADMIN_PASSWORD": "daniapog",
+                "PORT": "3000"
             }
         }
     ]
