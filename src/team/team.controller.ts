@@ -10,6 +10,11 @@ export class TeamController {
     constructor(private teamService: TeamService) {
     }
 
+    @Get('top')
+    getTopTeam() {
+        return this.teamService.getTopTeam();
+    }
+
 
     // @Roles([Role.User, Role.Admin])
     @Post('')
@@ -34,6 +39,8 @@ export class TeamController {
     activateTeam(@Param('id') id: number) {
         return this.teamService.activateTeam(id);
     }
+
+
 
 
 

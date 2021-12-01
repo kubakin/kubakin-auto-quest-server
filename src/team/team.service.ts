@@ -82,4 +82,8 @@ export class TeamService {
 
     }
 
+    async getTopTeam() {
+        return await this.teamRepository.find({order: {score: 'DESC'}, take: 10});
+    }
+
 }

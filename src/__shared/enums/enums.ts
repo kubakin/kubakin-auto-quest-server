@@ -15,3 +15,9 @@ export enum Status  {
     ACTIVATED  = 'ACTIVATED',
     NOT_ACTIVATED = 'NOT_ACTIVATED',
 }
+
+export enum StatusGame {
+    NOT_STARTED,
+    STARTED,
+    FINISHED
+}
