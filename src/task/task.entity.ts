@@ -29,4 +29,8 @@ export class Task {
     @OneToMany(()=> TasksForTeam, taskToTeam=>taskToTeam.task, {onDelete: 'CASCADE'})
     taskToTeam: TasksForTeam[]
 
+    @Column({default: 0})
+    default_order: number;
+
+
 }

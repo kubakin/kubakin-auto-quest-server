@@ -18,47 +18,47 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-    imports: [
-        ConfigModule.forRoot({
-            envFilePath: `.${process.env.NODE_ENV}.env`,
-        }),
-        AuthModule,
-        FileModule,
-        GameModule,
-        HelpModule,
-        TaskModule,
-        TeamModule,
-        UserModule,
-        TypeOrmModule.forRoot({
-                'type': 'postgres',
-                'host': process.env.POSTGRES_HOST,
-                'port': +process.env.POSTGRES_PORT,
-                'username': process.env.POSTGRES_USER,
-                'password': process.env.POSTGRES_PASSWORD,
-                'database': process.env.POSTGRES_DB,
-                'entities': ['dist/**/*.entity{.ts,.js}'],
-                'synchronize': true,
-                ssl:
-                    process.env.NODE_ENV === 'production'
-                        ? {rejectUnauthorized: false}
-                        : false,
-            }
-        ),
-        ServeStaticModule.forRoot({rootPath: path.resolve(__dirname, 'static')}),
-    ],
-    controllers: [AppController],
-    providers: [AppService
-        , {
-            provide: APP_GUARD,
-            useClass: JwtAuthGuard,
-        },
-        {
-            provide: APP_GUARD,
-            useClass: RolesGuard,
-        }],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: `.env.dev`,
+      ignoreEnvFile: !process.env.DEV,
+    }),
+    AuthModule,
+    FileModule,
+    GameModule,
+    HelpModule,
+    TaskModule,
+    TeamModule,
+    UserModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.POSTGRES_HOST,
+      port: +process.env.POSTGES_PORT,
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
+      entities: ['dist/**/*.entity{.ts,.js}'],
+      synchronize: true,
+      // ssl:
+      //     process.env.NODE_ENV === 'production'
+      //         ? {rejectUnauthorized: false}
+      //         : false,
+    }),
+    ServeStaticModule.forRoot({ rootPath: path.resolve(__dirname, 'static') }),
+  ],
+  controllers: [AppController],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {
-    constructor(private connection: Connection) {
-    }
-
+  constructor(private connection: Connection) {}
 }

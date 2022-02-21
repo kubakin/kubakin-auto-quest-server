@@ -31,4 +31,8 @@ export class HelpService {
         const help = await this.helpRepository.save({task, text: dto.text});
         return help;
     }
+
+    async delete(id: number) {
+        return await this.helpRepository.delete(id);
+    }
 }

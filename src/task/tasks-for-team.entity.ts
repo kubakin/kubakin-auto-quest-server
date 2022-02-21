@@ -5,11 +5,11 @@ import { getRandomInt } from '../__shared/helpers/helpers';
 
 @Entity()
 export class TasksForTeam {
-    @BeforeInsert()
-    addOrders(event) {
-        this.order = getRandomInt(100);
-
-    }
+    // @BeforeInsert()
+    // addOrders(event) {
+    //     this.order = getRandomInt(100);
+    //
+    // }
 
     @PrimaryGeneratedColumn()
     id: number;

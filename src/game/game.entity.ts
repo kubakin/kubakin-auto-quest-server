@@ -14,4 +14,7 @@ export class Game {
 
     @Column({default: StatusGame.NOT_STARTED})
     statusGame!: StatusGame
+
+    @Column({default: false})
+    mix: boolean;
 }

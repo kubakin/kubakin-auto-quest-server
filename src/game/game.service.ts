@@ -34,6 +34,5 @@ export class GameService implements OnModuleInit{
         const game = await this.gameRepository.findOne();
         const totalTasks = (await this.taskService.getAll()).length;
         return {...game, totalTasks};
-
     }
 }

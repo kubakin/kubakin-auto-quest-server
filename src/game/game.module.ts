@@ -8,6 +8,7 @@ import { TaskModule } from '../task/task.module';
 @Module({
   controllers: [GameController],
   providers: [GameService],
-  imports: [TypeOrmModule.forFeature([Game]), TaskModule]
+  imports: [TypeOrmModule.forFeature([Game]), TaskModule],
+  exports: [GameService],
 })
 export class GameModule {}
