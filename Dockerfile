@@ -18,5 +18,5 @@ RUN npm run prebuild
 RUN npm run build
 
 CMD ["node", "dist/main"]
-EXPOSE 3000
+#EXPOSE 3000
 
