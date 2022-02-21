@@ -10,7 +10,7 @@ services:
       - .env.prod
     container_name: quest
     ports:
-      - '0.0.0.0:3000:3000'
+      - '0.0.0.0:8080:3000'
     depends_on:
       - db
   db:
