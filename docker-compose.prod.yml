@@ -12,6 +12,7 @@ services:
     container_name: quest
     depends_on:
       - db
+    restart: on-failure
 
   db:
     container_name: postgres-db
