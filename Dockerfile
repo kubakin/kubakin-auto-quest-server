@@ -16,7 +16,7 @@ RUN npm i
 COPY . .
 RUN npm run prebuild
 RUN npm run build
-
+EXPOSE 8080
 CMD ["node", "dist/main"]
-#EXPOSE 3000
+
 
